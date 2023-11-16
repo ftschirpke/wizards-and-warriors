@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://1hafwchrdnsu"]
+
+[ext_resource type="Script" path="res://color_card.gd" id="1_6v23m"]
+
+[sub_resource type="Gradient" id="Gradient_sj2nk"]
+offsets = PackedFloat32Array(0, 0, 0.627586)
+colors = PackedColorArray(0, 0.282353, 0, 1, 0, 0.282353, 0, 1, 0, 0.282353, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ng534"]
+gradient = SubResource("Gradient_sj2nk")
+width = 40
+height = 60
+
+[node name="color_card" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 60.0
+texture_normal = SubResource("GradientTexture2D_ng534")
+script = ExtResource("1_6v23m")
