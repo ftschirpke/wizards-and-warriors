@@ -1,23 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjqqbatadariy"]
+[gd_scene load_steps=5 format=3 uid="uid://cjqqbatadariy"]
 
-[ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_c2iqd"]
+[ext_resource type="Theme" uid="uid://btp8qjf63v84o" path="res://assets/main_theme.tres" id="1_3txcl"]
+[ext_resource type="PackedScene" uid="uid://cgiy7wi5v62b" path="res://ui_elements/buttons/scene_transition_button.tscn" id="3_vqpee"]
+[ext_resource type="PackedScene" uid="uid://co6m41wl2bq2l" path="res://scenes/levels/prototype_level.tscn" id="4_cu50h"]
+[ext_resource type="PackedScene" uid="uid://dk251vjujpgje" path="res://ui_elements/buttons/quit_button.tscn" id="5_awvpw"]
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_c2iqd")
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3txcl")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+metadata/_edit_use_anchors_ = true
 
-[node name="Button_start" type="Button" parent="."]
-offset_left = 482.0
-offset_top = 74.0
-offset_right = 682.0
-offset_bottom = 274.0
+[node name="MenuButtons" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="StartButton" parent="MenuButtons" instance=ExtResource("3_vqpee")]
+layout_mode = 2
 text = "New Game"
+scene = ExtResource("4_cu50h")
 
-[node name="Button_exit" type="Button" parent="."]
-offset_left = 470.0
-offset_top = 329.0
-offset_right = 702.0
-offset_bottom = 542.0
+[node name="QuitButton" parent="MenuButtons" instance=ExtResource("5_awvpw")]
+layout_mode = 2
 text = "Quit"
-
-[connection signal="pressed" from="Button_start" to="." method="_on_button_start_pressed"]
-[connection signal="pressed" from="Button_exit" to="." method="_on_button_exit_pressed"]
