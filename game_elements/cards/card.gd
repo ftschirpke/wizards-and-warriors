@@ -13,7 +13,6 @@ var dragged: bool = false
 @export var card_size: Vector2
 @export var card_attribute: int
 
-
 func _ready() -> void:
 	self.position = card_location
 	card_location_origin = card_location
@@ -21,17 +20,14 @@ func _ready() -> void:
 	card_button.size = card_size
 	color_rect.size = card_size
 
-
 func _physics_process(_delta) -> void:
 	if dragged:
 		self.position = get_global_mouse_position()
 	else:
 		self.position = card_location_origin
 
-
 func _on_card_button_button_down() -> void:
 	dragged = true
-
 
 func _on_card_button_button_up() -> void:
 	dragged = false

@@ -17,7 +17,6 @@ var move: bool = false
 var char_speedtemp: int
 var hp_current: int = HP_MAX
 
-
 func _physics_process(delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity = dir * SPEED * delta * 50
@@ -30,11 +29,9 @@ func _physics_process(delta: float) -> void:
 	if move:
 		move_and_slide()
 
-
 func getpath() -> void:
 	nav_agent.target_position = target_loc
 	move = false
-
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -47,14 +44,12 @@ func _input(event):
 			char_speedtemp = CHAR_SPEED
 			timer.start()
 
-
 func _on_timer_timeout():
 	if move:
 		char_speedtemp = char_speedtemp - 1
 		print(char_speedtemp)
 		if char_speedtemp == 0:
 			timer.stop()
-
 
 func attack() -> void:
 	pass
