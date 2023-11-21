@@ -28,11 +28,6 @@ func _physics_process(delta: float) -> void:
 
 	if(move):
 		move_and_slide()
-	
-
-func _process(delta) -> void:
-	pass
-	
 
 
 func getpath() -> void:

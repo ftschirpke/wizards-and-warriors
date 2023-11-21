@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cww03god6vg6u"
-path="res://.godot/imported/pathway.png-c0294bc31fbb7ffc20654f11548bd1c8.ctex"
+uid="uid://ccuyqb5qr1h4e"
+path="res://.godot/imported/ground.png-fef0bd5ef7843272bc8af3e4fa951fdc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://forest_tile_set/pathway.png"
-dest_files=["res://.godot/imported/pathway.png-c0294bc31fbb7ffc20654f11548bd1c8.ctex"]
+source_file="res://assets/forest_tile_set/ground.png"
+dest_files=["res://.godot/imported/ground.png-fef0bd5ef7843272bc8af3e4fa951fdc.ctex"]
 
 [params]
 

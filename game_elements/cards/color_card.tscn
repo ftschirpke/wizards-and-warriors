@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1hafwchrdnsu"]
 
-[ext_resource type="Script" path="res://color_card.gd" id="1_6v23m"]
+[ext_resource type="Script" path="res://game_elements/cards/color_card.gd" id="1_6v23m"]
 
 [sub_resource type="Gradient" id="Gradient_sj2nk"]
 offsets = PackedFloat32Array(0, 0, 0.627586)

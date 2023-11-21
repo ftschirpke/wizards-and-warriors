@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://co6m41wl2bq2l"]
 
-[ext_resource type="Script" path="res://scene2.gd" id="1_5luj8"]
-[ext_resource type="Texture2D" uid="uid://ccuyqb5qr1h4e" path="res://forest_tile_set/ground.png" id="2_1rbrp"]
-[ext_resource type="PackedScene" uid="uid://ql5e7ago64mp" path="res://player.tscn" id="3_1xspw"]
-[ext_resource type="Script" path="res://HPbar.gd" id="5_athav"]
-[ext_resource type="Script" path="res://FPS.gd" id="6_ij6fr"]
+[ext_resource type="Script" path="res://scenes/levels/prototype_level.gd" id="1_5luj8"]
+[ext_resource type="Texture2D" uid="uid://ccuyqb5qr1h4e" path="res://assets/forest_tile_set/ground.png" id="2_1rbrp"]
+[ext_resource type="PackedScene" uid="uid://ql5e7ago64mp" path="res://game_elements/characters/player.tscn" id="3_1xspw"]
+[ext_resource type="Script" path="res://ui_elements/hp_label.gd" id="5_athav"]
+[ext_resource type="Script" path="res://ui_elements/fps_label.gd" id="6_ij6fr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uqgym"]
 vertices = PackedVector2Array(8, -4.25, 8, 8, -4.3125, 8, -4.1875, -4.375)

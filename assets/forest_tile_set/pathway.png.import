@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg0o1euq8vvi5"
-path="res://.godot/imported/water.png-6c4ca872b8b4fcd1e882a136437261ba.ctex"
+uid="uid://cww03god6vg6u"
+path="res://.godot/imported/pathway.png-67072d7797e21c74760f2f3af386efcd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://forest_tile_set/water.png"
-dest_files=["res://.godot/imported/water.png-6c4ca872b8b4fcd1e882a136437261ba.ctex"]
+source_file="res://assets/forest_tile_set/pathway.png"
+dest_files=["res://.godot/imported/pathway.png-67072d7797e21c74760f2f3af386efcd.ctex"]
 
 [params]
 

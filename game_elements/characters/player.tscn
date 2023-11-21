@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://diqki73apbed8"]
+[gd_scene load_steps=7 format=3 uid="uid://ql5e7ago64mp"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_ivkme"]
-[ext_resource type="Script" path="res://deck.gd" id="2_voe4d"]
+[ext_resource type="Script" path="res://game_elements/characters/Player.gd" id="1_igckq"]
+[ext_resource type="Script" path="res://game_elements/cards/deck.gd" id="2_edw7o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wiv65"]
 radius = 5.0
@@ -27,14 +27,7 @@ collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 safe_margin = 0.5
-script = ExtResource("1_ivkme")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
-limit_left = 0
-limit_top = 0
-limit_right = 1136
-limit_bottom = 624
+script = ExtResource("1_igckq")
 
 [node name="Player_hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wiv65")
@@ -64,6 +57,6 @@ wait_time = 0.2
 shape = SubResource("CircleShape2D_oyvh4")
 
 [node name="deck" type="Node2D" parent="."]
-script = ExtResource("2_voe4d")
+script = ExtResource("2_edw7o")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
