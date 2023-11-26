@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://diqki73apbed8"]
 
-[ext_resource type="Script" path="res://game_elements/characters/Player.gd" id="1_ivkme"]
+[ext_resource type="Script" path="res://game_elements/characters/player.gd" id="1_ivkme"]
 [ext_resource type="Script" path="res://game_elements/cards/deck.gd" id="2_voe4d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wiv65"]

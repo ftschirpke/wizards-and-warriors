@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ql5e7ago64mp"]
 
-[ext_resource type="Script" path="res://game_elements/characters/Player.gd" id="1_igckq"]
+[ext_resource type="Script" path="res://game_elements/characters/player.gd" id="1_c6pqy"]
 [ext_resource type="Script" path="res://game_elements/cards/deck.gd" id="2_edw7o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wiv65"]
@@ -27,12 +27,12 @@ collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 safe_margin = 0.5
-script = ExtResource("1_igckq")
+script = ExtResource("1_c6pqy")
 
-[node name="Player_hitbox" type="CollisionShape2D" parent="."]
+[node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wiv65")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rw2qt")
 animation = &"block"
 

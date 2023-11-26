@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://co6m41wl2bq2l"]
+[gd_scene load_steps=20 format=3 uid="uid://co6m41wl2bq2l"]
 
 [ext_resource type="Script" path="res://scenes/levels/prototype_level.gd" id="1_5luj8"]
 [ext_resource type="Texture2D" uid="uid://ccuyqb5qr1h4e" path="res://assets/forest_tile_set/ground.png" id="2_1rbrp"]
 [ext_resource type="PackedScene" uid="uid://ql5e7ago64mp" path="res://game_elements/characters/player.tscn" id="3_1xspw"]
 [ext_resource type="Script" path="res://ui_elements/hp_label.gd" id="5_athav"]
 [ext_resource type="Script" path="res://ui_elements/fps_label.gd" id="6_ij6fr"]
+[ext_resource type="Theme" uid="uid://btp8qjf63v84o" path="res://assets/main_theme.tres" id="6_mj1ai"]
+[ext_resource type="PackedScene" uid="uid://cgiy7wi5v62b" path="res://ui_elements/buttons/scene_transition_button.tscn" id="7_yasgb"]
+[ext_resource type="Script" path="res://scenes/levels/ShowHandButton.gd" id="8_w4hle"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uqgym"]
 vertices = PackedVector2Array(8, -4.25, 8, 8, -4.3125, 8, -4.1875, -4.375)
@@ -223,7 +226,7 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_hovup")
 
-[node name="Node2D" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_5luj8")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -238,9 +241,6 @@ position = Vector2(411, 253)
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")
 
-[node name="card_list" type="Node2D" parent="."]
-position = Vector2(9, 37)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(411, 253)
 zoom = Vector2(1.5, 1.5)
@@ -249,41 +249,79 @@ limit_top = 0
 limit_right = 1136
 limit_bottom = 624
 
-[node name="Player UI" type="CanvasLayer" parent="."]
+[node name="UIOverlay" type="CanvasLayer" parent="."]
 
-[node name="HPbar" type="Label" parent="Player UI"]
-offset_left = 27.0
-offset_top = 8.0
-offset_right = 67.0
-offset_bottom = 36.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+[node name="UIMargin" type="MarginContainer" parent="UIOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_mj1ai")
+
+[node name="UIHeaderLeft" type="HBoxContainer" parent="UIOverlay/UIMargin"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HPlabel" type="Label" parent="UIOverlay/UIMargin/UIHeaderLeft"]
+layout_mode = 2
+text = "HP: ?? / ??"
 script = ExtResource("5_athav")
-
-[node name="Show_cards" type="Button" parent="Player UI"]
-offset_left = 1026.0
-offset_top = 564.0
-offset_right = 1122.0
-offset_bottom = 595.0
-toggle_mode = true
-text = "Show Hand"
-
-[node name="Game_UI" type="CanvasLayer" parent="."]
-
-[node name="Return" type="Button" parent="Game_UI"]
-offset_left = 1060.0
-offset_top = 7.0
-offset_right = 1125.0
-offset_bottom = 57.0
-text = "Return"
 metadata/_edit_use_anchors_ = true
 
-[node name="FPS" type="Label" parent="Game_UI"]
-offset_left = 145.0
-offset_top = 11.0
-offset_right = 185.0
-offset_bottom = 34.0
+[node name="FPSlabel" type="Label" parent="UIOverlay/UIMargin/UIHeaderLeft"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "FPS: ??"
 script = ExtResource("6_ij6fr")
+metadata/_edit_use_anchors_ = true
 
-[connection signal="toggled" from="Player UI/Show_cards" to="." method="_on_show_cards_toggled"]
-[connection signal="pressed" from="Game_UI/Return" to="." method="_on_button_pressed"]
+[node name="UIHeaderRight" type="HBoxContainer" parent="UIOverlay/UIMargin"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="MainMenuButton" parent="UIOverlay/UIMargin/UIHeaderRight" instance=ExtResource("7_yasgb")]
+layout_mode = 2
+text = "Return"
+scene_path = "res://scenes/menus/main_menu.tscn"
+
+[node name="DeckUI" type="PanelContainer" parent="UIOverlay/UIMargin"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="DeckPanelMargin" type="MarginContainer" parent="UIOverlay/UIMargin/DeckUI"]
+layout_mode = 2
+
+[node name="DeckHolder" type="HBoxContainer" parent="UIOverlay/UIMargin/DeckUI/DeckPanelMargin"]
+layout_mode = 2
+
+[node name="UIFooterLeft" type="HBoxContainer" parent="UIOverlay/UIMargin"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="UIFooterRight" type="HBoxContainer" parent="UIOverlay/UIMargin"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="AddCardButton" type="Button" parent="UIOverlay/UIMargin/UIFooterRight"]
+layout_mode = 2
+text = "Add Card"
+
+[node name="ShowHandButton" type="Button" parent="UIOverlay/UIMargin/UIFooterRight"]
+layout_mode = 2
+toggle_mode = true
+text = "Show Hand"
+script = ExtResource("8_w4hle")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="hp_changed" from="Player" to="UIOverlay/UIMargin/UIHeaderLeft/HPlabel" method="_on_player_hp_changed"]
+[connection signal="pressed" from="UIOverlay/UIMargin/UIFooterRight/AddCardButton" to="." method="_on_add_card_button_pressed"]
+[connection signal="toggled" from="UIOverlay/UIMargin/UIFooterRight/ShowHandButton" to="." method="_on_show_hand_button_toggled"]
+[connection signal="toggled" from="UIOverlay/UIMargin/UIFooterRight/ShowHandButton" to="UIOverlay/UIMargin/UIFooterRight/ShowHandButton" method="_on_toggled"]

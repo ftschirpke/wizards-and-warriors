@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui_elements/buttons/scene_transition_button.gd" id="1_k346d"]
 
-[node name="scene_transition_button" type="Button"]
+[node name="SceneTransitionButton" type="Button"]
 offset_right = 8.0
 offset_bottom = 8.0
 size_flags_horizontal = 3

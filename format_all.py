@@ -28,7 +28,7 @@ for path in root.iterdir():
 command_args = ["gdformat", "--line-length", "120"] + [str(filepath) for filepath in gdscript_files]
 subprocess.run(command_args)
 
-print("Removing double empty lines...")
+print("Removing double empty lines and replacing tabs with 4 spaces...")
 for filepath in gdscript_files:
     lines: str = []
     with open(filepath, "r") as f:
@@ -39,6 +39,8 @@ for filepath in gdscript_files:
         line_is_empty = line == "\n"
         if line_is_empty and last_was_empty:
             delete_lines.append(i)
+        else:
+            lines[i] = line.replace("\t", "    ")
         last_was_empty = line_is_empty
     for i, idx in enumerate(delete_lines):
         lines.pop(idx - i)
