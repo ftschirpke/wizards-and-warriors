@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://ql5e7ago64mp"]
+
+[ext_resource type="Script" path="res://game_elements/characters/player.gd" id="1_c6pqy"]
+[ext_resource type="Script" path="res://game_elements/cards/deck.gd" id="2_edw7o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wiv65"]
+radius = 5.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rw2qt"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"block",
+"speed": 5.0
+}]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_b2ixi"]
+size = Vector2(30, 30)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oyvh4"]
+radius = 17.0294
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(416, 284)
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+safe_margin = 0.5
+script = ExtResource("1_c6pqy")
+
+[node name="PlayerHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wiv65")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rw2qt")
+animation = &"block"
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-5, -5)
+color = Color(0.976471, 0.443137, 0.239216, 1)
+texture = SubResource("PlaceholderTexture2D_b2ixi")
+polygon = PackedVector2Array(0, 0, 10, 0, 10, 10, 0, 10)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_point_size = 0.0
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_oyvh4")
+
+[node name="deck" type="Node2D" parent="."]
+script = ExtResource("2_edw7o")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

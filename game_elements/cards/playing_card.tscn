@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdan4ipkh8htl"]
+
+[ext_resource type="Script" path="res://game_elements/cards/card.gd" id="1_86mfu"]
+
+[node name="Card" type="MarginContainer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -368.0
+offset_right = 74.0
+offset_bottom = -248.0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("1_86mfu")
+card_color = Color(0.0117647, 0.854902, 0, 1)
+card_size = Vector2(74, 120)
+
+[node name="CardColor" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.215686, 0.568627, 0.211765, 1)
+
+[node name="CardButton" type="Button" parent="."]
+layout_mode = 2
+
+[connection signal="button_down" from="CardButton" to="." method="_on_card_button_button_down"]
+[connection signal="button_up" from="CardButton" to="." method="_on_card_button_button_up"]

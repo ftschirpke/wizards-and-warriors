@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk251vjujpgje"]
+
+[ext_resource type="Script" path="res://ui_elements/buttons/quit_button.gd" id="1_fsv8h"]
+
+[node name="quit_button" type="Button"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_fsv8h")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
