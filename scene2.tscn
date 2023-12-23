@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dakghtjj1scjy"]
+[gd_scene load_steps=17 format=3 uid="uid://co6m41wl2bq2l"]
 
 [ext_resource type="Script" path="res://scene2.gd" id="1_5luj8"]
 [ext_resource type="Texture2D" uid="uid://ccuyqb5qr1h4e" path="res://forest_tile_set/ground.png" id="2_1rbrp"]
-[ext_resource type="PackedScene" uid="uid://8218tcx2s5tx" path="res://player.tscn" id="3_1xspw"]
+[ext_resource type="PackedScene" uid="uid://ql5e7ago64mp" path="res://player.tscn" id="3_1xspw"]
 [ext_resource type="Script" path="res://HPbar.gd" id="5_athav"]
 [ext_resource type="Script" path="res://FPS.gd" id="6_ij6fr"]
 
