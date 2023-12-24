@@ -4,6 +4,7 @@ class_name playing_card
 #define default values
 var card_location_origin:Vector2
 var dragged:bool = false
+var offset:Vector2
 
 @onready var color_rect: ColorRect = $Card_Color
 @onready var card_button: Button = $Card_Button
@@ -12,7 +13,7 @@ var dragged:bool = false
 @export var card_color: Color
 @export var card_size: Vector2
 @export var card_attribute: int
-
+@export var card_disabled:bool = false
 #Nodes
 
 
@@ -24,22 +25,30 @@ func _ready():
 	card_location_origin = card_location
 	color_rect.color = card_color
 	card_button.size = card_size
+	card_button.disabled = card_disabled
 	color_rect.size = card_size
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if(not dragged):
+		self.position = card_location
+		card_location_origin = card_location
+	
+	color_rect.color = card_color
+	card_button.size = card_size
+	card_button.disabled = card_disabled
+	color_rect.size = card_size
 
 #handle physics of the card (dragging/playing usw)
 func _physics_process(delta) -> void:
 	
 	if(dragged):
-		self.position = get_global_mouse_position()
+		self.position = get_global_mouse_position() + offset
 	else:
 		self.position  = card_location_origin
 
 func _on_card_button_button_down():
 	dragged = true
+	offset = self.position - get_global_mouse_position()
 
 
 func _on_card_button_button_up():
