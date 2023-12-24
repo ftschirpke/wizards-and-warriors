@@ -1,11 +1,12 @@
 extends Node2D
-var playing_card_scene = preload("res://playing_card.tscn")
 
+# variables for deck
+var playing_card_scene = preload("res://playing_card.tscn")
 var deck_inst
 var hand_shown:bool = false
-# Called when the node enters the scene tree for the first time.
 
-
+# variables for turn-system
+var end_condition:bool = false
 
 
 
@@ -16,6 +17,7 @@ func switch_card(card):
 	card.visible = not card.visible
 
 func _ready():
+	# load deck and cards
 	var ui = $"Player UI"
 	deck_inst = preload("res://deck.tscn").instantiate()
 	ui.add_child(deck_inst)
@@ -24,13 +26,27 @@ func _ready():
 	for card in deck_inst.deck:
 		deck_inst.add_child(card)
 		switch_card(card)
+	
+	
+	
+	
+	
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	# deck: check if card is played
 	for card in deck_inst.hand:
 		if(card.played):
 			deck_inst.discard_card(card)
 			switch_card(card)
-
+			
+	# main loop for battle
+	if(not end_condition):
+		
+	
+	
 func _input(event):
 	pass
 
