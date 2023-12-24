@@ -2,7 +2,7 @@ extends Node2D
 var playing_card_scene = preload("res://playing_card.tscn")
 
 var deck_inst
-
+var hand_shown:bool = false
 # Called when the node enters the scene tree for the first time.
 
 
@@ -38,12 +38,15 @@ func _on_button_pressed():
 
 
 func _on_show_cards_toggled(button_pressed):
+	hand_shown = not hand_shown
 	for card in deck_inst.hand:
 		switch_card(card)
 
 
 
 func _on_draw_pressed():
+	if(not hand_shown):
+		return
 	for card in deck_inst.hand:
 		switch_card(card)
 	
@@ -57,7 +60,6 @@ func _on_draw_pressed():
 	
 	print("Hand:")
 	for value in deck_inst.hand:
-		print(value.card_location)
 		print(value.card_attribute)
 	print("Deck:")
 	for value in deck_inst.deck:
