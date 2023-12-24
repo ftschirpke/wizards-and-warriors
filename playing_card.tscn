@@ -13,12 +13,13 @@ card_size = Vector2(60, 120)
 [node name="Card_Color" type="ColorRect" parent="."]
 offset_right = 40.0
 offset_bottom = 60.0
-color = Color(0.215686, 0.568627, 0.211765, 1)
+color = Color(0.160784, 0.431373, 0.156863, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Card_Button" type="Button" parent="."]
 offset_right = 40.0
 offset_bottom = 60.0
+focus_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="Card_Button" to="." method="_on_card_button_button_down"]

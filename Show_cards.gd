@@ -8,5 +8,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	if(not button_pressed):
+		text = "show cards"
+	else:
+		text = "hide cards"

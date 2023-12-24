@@ -10,14 +10,16 @@ var offset:Vector2
 @onready var card_button: Button = $Card_Button
 
 @export var card_location: Vector2
-@export var card_color: Color
+# doesnt really work
+@export var card_color: Color = Color(0.16,0.43,0.15,1.0)
 @export var card_size: Vector2
 @export var card_attribute: int
 @export var card_disabled:bool = false
-
+@export var played:bool = false
 
 # Called when the node enters the scene tree for the first time
 func _ready():
+	print(card_color)
 	var color_rect: ColorRect = $Card_Color
 	var card_button: Button = $Card_Button
 	self.position = card_location
@@ -38,6 +40,8 @@ func _process(delta):
 	
 	color_rect.color = card_color
 	color_rect.size = card_size
+	if(self.position.y < 400):
+		color_rect.color = card_color.lightened(0.4)
 	
 	card_button.size = card_size
 	card_button.disabled = card_disabled
@@ -58,3 +62,5 @@ func _on_card_button_button_down():
 
 func _on_card_button_button_up():
 	dragged = false
+	if (self.position.y < 400):
+		played = true 

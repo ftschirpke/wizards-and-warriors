@@ -1,6 +1,6 @@
 extends Node2D
 
-var cards:Array = [1, 2, 3, 4, 5, 6]
+var cards:Array = [1, 2, 3, 4, 5, 6,7,8,9,10,11,12,13,14]
 var deck:Array = []
 var hand:Array = []
 var grave:Array = []
@@ -26,10 +26,21 @@ func cycle_grave():
 		deck.append(grave.pop_back())
 	shuffle()
 	
-func discard():
+func discard_hand():
 	for i in range(hand.size()):
 		grave.append(hand.pop_back())
-	
+
+func discard_card(card):
+	# check if card is in hand
+	if(card in hand):
+		var i = 0
+		# find index of card in hand
+		while(hand[i] != card):
+			i+=1
+		# discard to grave
+		grave.append(hand.pop_at(i))
+		card.played = false
+
 func deal(count:int):
 	# discard hand into graveyard
 	for i in range(hand.size()):

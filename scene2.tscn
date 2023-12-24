@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://dakghtjj1scjy"]
+[gd_scene load_steps=19 format=3 uid="uid://dakghtjj1scjy"]
 
 [ext_resource type="Script" path="res://scene2.gd" id="1_5luj8"]
 [ext_resource type="Texture2D" uid="uid://ccuyqb5qr1h4e" path="res://forest_tile_set/ground.png" id="2_1rbrp"]
 [ext_resource type="PackedScene" uid="uid://8218tcx2s5tx" path="res://player.tscn" id="3_1xspw"]
 [ext_resource type="Script" path="res://DeckUI.gd" id="4_ilwaj"]
 [ext_resource type="Script" path="res://HPbar.gd" id="5_athav"]
+[ext_resource type="Script" path="res://Show_cards.gd" id="6_0colh"]
 [ext_resource type="Script" path="res://FPS.gd" id="6_ij6fr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uqgym"]
@@ -278,6 +279,7 @@ offset_right = 1122.0
 offset_bottom = 524.0
 toggle_mode = true
 text = "Show Hand"
+script = ExtResource("6_0colh")
 
 [node name="draw" type="Button" parent="Player UI"]
 offset_left = 1026.0
