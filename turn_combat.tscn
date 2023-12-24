@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvvmdip3ramju"]
+
+[ext_resource type="Script" path="res://Turn_Combat.gd" id="1_4jpig"]
+
+[node name="Turn_Combat" type="Node2D"]
+script = ExtResource("1_4jpig")

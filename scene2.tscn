@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dakghtjj1scjy"]
+[gd_scene load_steps=20 format=3 uid="uid://dakghtjj1scjy"]
 
 [ext_resource type="Script" path="res://scene2.gd" id="1_5luj8"]
 [ext_resource type="Texture2D" uid="uid://ccuyqb5qr1h4e" path="res://forest_tile_set/ground.png" id="2_1rbrp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://HPbar.gd" id="5_athav"]
 [ext_resource type="Script" path="res://Show_cards.gd" id="6_0colh"]
 [ext_resource type="Script" path="res://FPS.gd" id="6_ij6fr"]
+[ext_resource type="Script" path="res://TurnOrder.gd" id="8_6h1f8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uqgym"]
 vertices = PackedVector2Array(8, -4.25, 8, 8, -4.3125, 8, -4.1875, -4.375)
@@ -295,6 +296,20 @@ offset_right = 1122.0
 offset_bottom = 604.0
 text = "discard"
 
+[node name="CardHolder" type="ColorRect" parent="Player UI"]
+offset_left = 273.0
+offset_top = 487.0
+offset_right = 858.0
+offset_bottom = 632.0
+color = Color(0.180392, 0.180392, 0.180392, 0.627451)
+
+[node name="end_turn" type="Button" parent="Player UI"]
+offset_left = 1027.0
+offset_top = 454.0
+offset_right = 1120.0
+offset_bottom = 485.0
+text = "End Turn"
+
 [node name="Game_UI" type="CanvasLayer" parent="."]
 
 [node name="Return" type="Button" parent="Game_UI"]
@@ -312,7 +327,18 @@ offset_right = 185.0
 offset_bottom = 34.0
 script = ExtResource("6_ij6fr")
 
+[node name="TurnOrder" type="Label" parent="Game_UI"]
+offset_left = 382.0
+offset_top = 10.0
+offset_right = 712.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+script = ExtResource("8_6h1f8")
+
 [connection signal="toggled" from="Player UI/Show_cards" to="." method="_on_show_cards_toggled"]
 [connection signal="pressed" from="Player UI/draw" to="." method="_on_draw_pressed"]
 [connection signal="pressed" from="Player UI/discard" to="." method="_on_discard_pressed"]
+[connection signal="pressed" from="Player UI/end_turn" to="." method="_on_end_turn_pressed"]
 [connection signal="pressed" from="Game_UI/Return" to="." method="_on_button_pressed"]

@@ -5,6 +5,7 @@ class_name playing_card
 var card_location_origin:Vector2
 var dragged:bool = false
 var offset:Vector2
+var played_y:float = 370
 
 @onready var color_rect: ColorRect = $Card_Color
 @onready var card_button: Button = $Card_Button
@@ -19,7 +20,6 @@ var offset:Vector2
 
 # Called when the node enters the scene tree for the first time
 func _ready():
-	print(card_color)
 	var color_rect: ColorRect = $Card_Color
 	var card_button: Button = $Card_Button
 	self.position = card_location
@@ -40,7 +40,7 @@ func _process(delta):
 	
 	color_rect.color = card_color
 	color_rect.size = card_size
-	if(self.position.y < 400):
+	if(self.position.y < played_y):
 		color_rect.color = card_color.lightened(0.4)
 	
 	card_button.size = card_size
@@ -62,5 +62,5 @@ func _on_card_button_button_down():
 
 func _on_card_button_button_up():
 	dragged = false
-	if (self.position.y < 400):
+	if (self.position.y < played_y):
 		played = true 
