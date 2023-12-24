@@ -58,12 +58,16 @@ func _on_draw_pressed():
 		switch_card(card)
 		i = i+1
 	
-	print("Hand:")
-	for value in deck_inst.hand:
-		print(value.card_attribute)
-	print("Deck:")
-	for value in deck_inst.deck:
-		print(value.card_attribute)
-	print("Grave:")
-	for value in deck_inst.grave:
-		print(value.card_attribute)
+	
+func _on_discard_pressed():
+	for card in deck_inst.hand:
+		switch_card(card)
+	deck_inst.discard()
+	
+# TODO: dsiplay deck and discard	
+	
+	
+	
+	
+	
+	

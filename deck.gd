@@ -26,6 +26,10 @@ func cycle_grave():
 		deck.append(grave.pop_back())
 	shuffle()
 	
+func discard():
+	for i in range(hand.size()):
+		grave.append(hand.pop_back())
+	
 func deal(count:int):
 	# discard hand into graveyard
 	for i in range(hand.size()):

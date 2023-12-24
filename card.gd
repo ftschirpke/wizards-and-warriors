@@ -14,7 +14,6 @@ var offset:Vector2
 @export var card_size: Vector2
 @export var card_attribute: int
 @export var card_disabled:bool = false
-#Nodes
 
 
 # Called when the node enters the scene tree for the first time
@@ -23,10 +22,14 @@ func _ready():
 	var card_button: Button = $Card_Button
 	self.position = card_location
 	card_location_origin = card_location
+	
 	color_rect.color = card_color
+	color_rect.size = card_size
+	
 	card_button.size = card_size
 	card_button.disabled = card_disabled
-	color_rect.size = card_size
+	card_button.text = "CARD\n" + str(card_attribute)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(not dragged):
@@ -34,9 +37,11 @@ func _process(delta):
 		card_location_origin = card_location
 	
 	color_rect.color = card_color
+	color_rect.size = card_size
+	
 	card_button.size = card_size
 	card_button.disabled = card_disabled
-	color_rect.size = card_size
+	
 
 #handle physics of the card (dragging/playing usw)
 func _physics_process(delta) -> void:

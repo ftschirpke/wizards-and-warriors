@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dakghtjj1scjy"]
+[gd_scene load_steps=18 format=3 uid="uid://dakghtjj1scjy"]
 
 [ext_resource type="Script" path="res://scene2.gd" id="1_5luj8"]
 [ext_resource type="Texture2D" uid="uid://ccuyqb5qr1h4e" path="res://forest_tile_set/ground.png" id="2_1rbrp"]
 [ext_resource type="PackedScene" uid="uid://8218tcx2s5tx" path="res://player.tscn" id="3_1xspw"]
+[ext_resource type="Script" path="res://DeckUI.gd" id="4_ilwaj"]
 [ext_resource type="Script" path="res://HPbar.gd" id="5_athav"]
 [ext_resource type="Script" path="res://FPS.gd" id="6_ij6fr"]
 
@@ -251,6 +252,16 @@ limit_bottom = 624
 
 [node name="Player UI" type="CanvasLayer" parent="."]
 
+[node name="DeckUI" type="Label" parent="Player UI"]
+offset_left = 1024.0
+offset_top = 401.0
+offset_right = 1130.0
+offset_bottom = 483.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+script = ExtResource("4_ilwaj")
+
 [node name="HPbar" type="Label" parent="Player UI"]
 offset_left = 27.0
 offset_top = 8.0
@@ -262,18 +273,25 @@ script = ExtResource("5_athav")
 
 [node name="Show_cards" type="Button" parent="Player UI"]
 offset_left = 1026.0
-offset_top = 526.0
+offset_top = 493.0
 offset_right = 1122.0
-offset_bottom = 557.0
+offset_bottom = 524.0
 toggle_mode = true
 text = "Show Hand"
 
 [node name="draw" type="Button" parent="Player UI"]
 offset_left = 1026.0
-offset_top = 563.0
+offset_top = 532.0
 offset_right = 1122.0
-offset_bottom = 594.0
+offset_bottom = 563.0
 text = "draw"
+
+[node name="discard" type="Button" parent="Player UI"]
+offset_left = 1026.0
+offset_top = 573.0
+offset_right = 1122.0
+offset_bottom = 604.0
+text = "discard"
 
 [node name="Game_UI" type="CanvasLayer" parent="."]
 
@@ -294,4 +312,5 @@ script = ExtResource("6_ij6fr")
 
 [connection signal="toggled" from="Player UI/Show_cards" to="." method="_on_show_cards_toggled"]
 [connection signal="pressed" from="Player UI/draw" to="." method="_on_draw_pressed"]
+[connection signal="pressed" from="Player UI/discard" to="." method="_on_discard_pressed"]
 [connection signal="pressed" from="Game_UI/Return" to="." method="_on_button_pressed"]
