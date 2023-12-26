@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://8218tcx2s5tx"]
+[gd_scene load_steps=10 format=3 uid="uid://8218tcx2s5tx"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_igckq"]
-[ext_resource type="Script" path="res://deck.gd" id="2_edw7o"]
+[ext_resource type="Script" path="res://DeckUI.gd" id="2_0nxp5"]
+[ext_resource type="Script" path="res://Player UI.gd" id="2_5guur"]
+[ext_resource type="Script" path="res://HPbar.gd" id="3_tt8v0"]
+[ext_resource type="Script" path="res://Show_cards.gd" id="4_onmjb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wiv65"]
 radius = 5.0
@@ -56,7 +59,74 @@ wait_time = 0.2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_oyvh4")
 
-[node name="deck" type="Node2D" parent="."]
-script = ExtResource("2_edw7o")
+[node name="Player UI" type="CanvasLayer" parent="."]
+script = ExtResource("2_5guur")
+
+[node name="DeckUI" type="Label" parent="Player UI"]
+offset_left = 1024.0
+offset_top = 368.0
+offset_right = 1130.0
+offset_bottom = 450.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+script = ExtResource("2_0nxp5")
+metadata/_edit_use_anchors_ = true
+
+[node name="HPbar" type="Label" parent="Player UI"]
+offset_left = 27.0
+offset_top = 8.0
+offset_right = 67.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+script = ExtResource("3_tt8v0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Show_cards" type="Button" parent="Player UI"]
+offset_left = 1026.0
+offset_top = 493.0
+offset_right = 1122.0
+offset_bottom = 524.0
+toggle_mode = true
+text = "Show Hand"
+script = ExtResource("4_onmjb")
+metadata/_edit_use_anchors_ = true
+
+[node name="draw" type="Button" parent="Player UI"]
+offset_left = 1026.0
+offset_top = 532.0
+offset_right = 1122.0
+offset_bottom = 563.0
+text = "draw"
+metadata/_edit_use_anchors_ = true
+
+[node name="discard" type="Button" parent="Player UI"]
+offset_left = 1026.0
+offset_top = 573.0
+offset_right = 1122.0
+offset_bottom = 604.0
+text = "discard"
+metadata/_edit_use_anchors_ = true
+
+[node name="CardHolder" type="ColorRect" parent="Player UI"]
+offset_left = 273.0
+offset_top = 487.0
+offset_right = 858.0
+offset_bottom = 632.0
+color = Color(0.180392, 0.180392, 0.180392, 0.627451)
+metadata/_edit_use_anchors_ = true
+
+[node name="end_turn" type="Button" parent="Player UI"]
+offset_left = 1027.0
+offset_top = 454.0
+offset_right = 1120.0
+offset_bottom = 485.0
+text = "End Turn"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="toggled" from="Player UI/Show_cards" to="Player UI" method="_on_show_cards_toggled"]
+[connection signal="pressed" from="Player UI/draw" to="Player UI" method="_on_draw_pressed"]
+[connection signal="pressed" from="Player UI/discard" to="Player UI" method="_on_discard_pressed"]
+[connection signal="pressed" from="Player UI/end_turn" to="Player UI" method="_on_end_turn_pressed"]

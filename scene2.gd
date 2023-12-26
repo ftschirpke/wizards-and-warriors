@@ -5,7 +5,7 @@ class char2:
 	var speed:int
 	var hp:int
 	var id:int
-	
+
 	func _init(name,speed,hp,id):
 		self.name = name
 		self.speed = speed
@@ -22,44 +22,67 @@ var combat_inst
 var end_condition:bool = false
 var char_list:Array = []
 
-
+# variables for characters
+var player_chars:Array = []
+var player2_inst
+var current_char
+var prev_char
 
 func switch_card(card):
 	card.card_disabled = not card.card_disabled
 	card.visible = not card.visible
 
+func camera_follow_player(prev_player,player):
+	if(prev_player == player):
+		get_node("CameraFollow").reparent(player)
+	else:
+		prev_player.get_node("CameraFollow").reparent(player)
+	var new_pos = player.get_node("CameraFollow")
+	new_pos.remote_path = new_pos.get_path_to($MainCamera)
+	new_pos.position = Vector2(0,0)
+
 func _ready():
-	# load deck and cards
-	get_node("Player UI/CardHolder").visible = false
-	var ui = $"Player UI"
-	deck_inst = preload("res://deck.tscn").instantiate()
-	ui.add_child(deck_inst)
-	# preload all the cards in the deck (maybe loading and reloading them works aswell)
-	# deactivate all 
-	for card in deck_inst.deck:
-		deck_inst.add_child(card)
-		switch_card(card)
+	# load players
+	player_chars.append(preload("res://player.tscn").instantiate())
+	add_child(player_chars[0])
+	player_chars[0].position = Vector2(200,200)
 	
-	char_list.append( char2.new("Player", 10, 30, 0))
+	player_chars.append(preload("res://player.tscn").instantiate())
+	add_child(player_chars[1])
+	player_chars[1].position = Vector2(300,200)
+	
+	player_chars.append(preload("res://player.tscn").instantiate())
+	add_child(player_chars[2])
+	player_chars[2].position = Vector2(500,200)
+	
+	
+	
+	# load deck and cards
+	#get_node("temp/Player UI/CardHolder").visible = false
+	var i:int = 0
+	for pc in player_chars:
+		player_chars[i].player_id = str(i)
+		pc.get_node("Player UI").visible = false
+		char_list.append(char2.new("Player"+ str(i),10,30,i ))
+		i += 1
 	
 	# load turn combat structure
 	combat_inst = preload("res://turn_combat.tscn").instantiate()
 	add_child(combat_inst)
 	for char in char_list:
-		var char2 = combat_inst.char.new(char.name, char.speed)
-		combat_inst.char_list.append(char2)
+		var chartemp = combat_inst.char.new(str(char.id), char.speed)
+		combat_inst.char_list.append(chartemp)
 	combat_inst.start_round()
 	
+	# connect to signal of combat
+	combat_inst.turn_change.connect(_on_turn_change)
+	current_char = player_chars[int(combat_inst.round_order[0].id)]
+	prev_char = current_char
+	camera_follow_player(prev_char, current_char)
+	current_char.get_node("Player UI").visible = true
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	# deck: check if card is played
-	for card in deck_inst.hand:
-		if(card.played):
-			deck_inst.discard_card(card)
-			switch_card(card)
-			
 	# main loop for battle
 	if(not end_condition):
 		pass
@@ -72,44 +95,18 @@ func _input(event):
 func _on_button_pressed():
 	get_tree().change_scene_to_file("res://main.tscn")
 
-
-func _on_show_cards_toggled(button_pressed):
-	hand_shown = not hand_shown
-	for card in deck_inst.hand:
-		switch_card(card)
-	get_node("Player UI/CardHolder").visible = hand_shown
-
-
-func _on_draw_pressed():
-	if(not hand_shown):
-		return
-	for card in deck_inst.hand:
-		switch_card(card)
+func _on_turn_change():
 	
-	deck_inst.deal(3)
-	var hand_size:int = deck_inst.hand.size()
-	var center = get_viewport_rect().size.x/2
-	var start_x = center - 100*deck_inst.hand.size()/2
-	var i:int = 0
-	for card in deck_inst.hand:	
-		card.card_location = Vector2(start_x+i*100,500)
-		switch_card(card)
-		i = i+1
+	prev_char.get_node("Player UI").visible = false
+	
+	current_char = player_chars[int(combat_inst.round_order[0].id)]
+	camera_follow_player(prev_char,current_char)
+	current_char.get_node("Player UI").visible = true
+	prev_char = current_char
 	
 	
-func _on_discard_pressed():
-	if(not hand_shown):
-		return
-	for card in deck_inst.hand:
-		switch_card(card)
-	deck_inst.discard_hand()
 	
-
-func _on_end_turn_pressed():
-	combat_inst.next_turn()
 	
-
-
-
-
-
+	
+	
+	

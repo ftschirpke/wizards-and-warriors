@@ -8,6 +8,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var deck_inst = get_parent().get_parent().deck_inst
+	var deck_inst = get_parent().get_node("Deck")
 	
 	text = "Deck: "+ str(deck_inst.deck.size()) + "\nHand: " + str(deck_inst.hand.size()) + "\nGrave: " + str(deck_inst.grave.size())

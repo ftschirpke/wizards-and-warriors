@@ -13,10 +13,13 @@ var end_condition:bool = false
 var round_order:Array = []
 var char_list:Array = []
 var turn_counter:int = 0
+signal turn_change
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,12 +47,14 @@ func enter_combat(char:char):
 	
 	
 func next_turn():
+	
 	if(not round_order.is_empty()):
 		round_order.pop_front()
 	if(round_order.is_empty()):
 		start_round()
-
-
+	
+	# emit signal for scene
+	turn_change.emit()
 
 
 
