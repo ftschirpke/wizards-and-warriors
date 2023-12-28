@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ql5e7ago64mp"]
 
 [ext_resource type="Script" path="res://game_elements/characters/player.gd" id="1_c6pqy"]
-[ext_resource type="Script" path="res://game_elements/cards/deck.gd" id="2_edw7o"]
+[ext_resource type="PackedScene" uid="uid://bpxn5cbmdfa1f" path="res://ui_elements/player_ui.tscn" id="3_whmwv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wiv65"]
 radius = 5.0
@@ -56,7 +56,6 @@ wait_time = 0.2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_oyvh4")
 
-[node name="deck" type="Node2D" parent="."]
-script = ExtResource("2_edw7o")
+[node name="PlayerUIOverlay" parent="." instance=ExtResource("3_whmwv")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
