@@ -1,11 +1,11 @@
-extends CanvasLayer
-class_name PlayerUI
+class_name PlayerUI extends CanvasLayer
 
-@onready var deck_ui := $PlayerUIMargin/DeckUI
-@onready var deck_node := $PlayerUIMargin/DeckUI/DeckPanelMargin/DeckPanelCentering/DeckHolder
-@onready var hand_label := $PlayerUIMargin/PlayerUIFooterRight/HandLabel
-@onready var deck_label := $PlayerUIMargin/PlayerUIFooterRight/DeckLabel
-@onready var grave_label := $PlayerUIMargin/PlayerUIFooterRight/GraveLabel
+@onready var deck_ui: PanelContainer = $PlayerUIMargin/DeckUI
+@onready var deck_node: HBoxContainer = $PlayerUIMargin/DeckUI/DeckPanelMargin/DeckPanelCentering/DeckHolder
+@onready var hand_label: Label = $PlayerUIMargin/PlayerUIFooterRight/HandLabel
+@onready var deck_label: Label = $PlayerUIMargin/PlayerUIFooterRight/DeckLabel
+@onready var grave_label: Label = $PlayerUIMargin/PlayerUIFooterRight/GraveLabel
+@onready var end_turn_button: Button = $PlayerUIMargin/PlayerUIFooterRight/EndTurnButton
 
 func _ready() -> void:
     deck_ui.visible = false

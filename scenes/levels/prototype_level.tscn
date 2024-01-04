@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://co6m41wl2bq2l"]
+[gd_scene load_steps=19 format=3 uid="uid://co6m41wl2bq2l"]
 
 [ext_resource type="Script" path="res://scenes/levels/prototype_level.gd" id="1_5luj8"]
 [ext_resource type="Texture2D" uid="uid://ccuyqb5qr1h4e" path="res://assets/forest_tile_set/ground.png" id="2_1rbrp"]
+[ext_resource type="Script" path="res://scenes/levels/round_counter_label.gd" id="5_nxfee"]
 [ext_resource type="Script" path="res://ui_elements/fps_label.gd" id="6_ij6fr"]
+[ext_resource type="Script" path="res://scenes/levels/turn_order_label.gd" id="6_l1byu"]
 [ext_resource type="Theme" uid="uid://btp8qjf63v84o" path="res://assets/main_theme.tres" id="6_mj1ai"]
 [ext_resource type="PackedScene" uid="uid://cgiy7wi5v62b" path="res://ui_elements/buttons/scene_transition_button.tscn" id="7_yasgb"]
 
@@ -265,6 +267,31 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 text = "FPS: ??"
 script = ExtResource("6_ij6fr")
+metadata/_edit_use_anchors_ = true
+
+[node name="UIHeaderMiddle" type="HBoxContainer" parent="UIOverlay/UIMargin"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="RoundCounterLabel" type="Label" parent="UIOverlay/UIMargin/UIHeaderMiddle"]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Round: %d "
+script = ExtResource("5_nxfee")
+metadata/_edit_use_anchors_ = true
+
+[node name="HeaderMiddleSeparator" type="VSeparator" parent="UIOverlay/UIMargin/UIHeaderMiddle"]
+visible = false
+layout_mode = 2
+
+[node name="TurnOrderLabel" type="Label" parent="UIOverlay/UIMargin/UIHeaderMiddle"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Combat hasn't started yet..."
+script = ExtResource("6_l1byu")
 metadata/_edit_use_anchors_ = true
 
 [node name="UIHeaderRight" type="HBoxContainer" parent="UIOverlay/UIMargin"]

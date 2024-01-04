@@ -1,5 +1,4 @@
-extends Control
-class_name PlayingCard
+class_name PlayingCard extends Control
 
 # define default values
 var card_location_origin: Vector2
