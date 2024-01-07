@@ -57,10 +57,10 @@ func _ready() -> void:
     burn_draw_button.pressed.connect(func(): data.deck.deal_and_burn_overflow(draw_count))
     discard_draw_button.pressed.connect(func(): data.deck.discard_and_deal(draw_count))
     discard_button.pressed.connect(data.deck.discard_hand)
-    
+
     hp_changed.connect(ui.hp_label._on_player_hp_changed)
     hp_current = HP_MAX
-    
+
 func _physics_process(delta: float) -> void:
     if not is_active:
         return
