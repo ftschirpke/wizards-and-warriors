@@ -44,6 +44,7 @@ func _set_is_active(value: bool) -> void:
     is_active = value
     nav_agent.debug_enabled = is_active
     if is_active:
+        char_speedtemp = CHAR_SPEED
         print("Current player's name: %s" % data.name)
         print("Current player's position: %v" % position)
         start_turn()
