@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg4ew5f35iihm"]
+
+[sub_resource type="Gradient" id="Gradient_sj2nk"]
+offsets = PackedFloat32Array(0, 0, 0.627586)
+colors = PackedColorArray(0, 0.282353, 0, 1, 0, 0.282353, 0, 1, 0, 0.282353, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ng534"]
+gradient = SubResource("Gradient_sj2nk")
+width = 40
+height = 60
+
+[sub_resource type="GDScript" id="GDScript_72oov"]
+script/source = "extends TextureButton
+
+class_name newcard
+
+var spawn_loc: Vector2
+var hex_color: int
+
+func _init(spawn_loc = Vector2(0, 0), hex_color = 004800) -> void:
+    var color = Color.hex(hex_color)
+    set_modulate(color)
+    position = spawn_loc
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+    pass  # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+    pass
+"
+
+[node name="color_card" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 60.0
+texture_normal = SubResource("GradientTexture2D_ng534")
+script = SubResource("GDScript_72oov")

@@ -1,0 +1,98 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpxn5cbmdfa1f"]
+
+[ext_resource type="Script" path="res://ui_elements/player_ui.gd" id="1_i00lv"]
+[ext_resource type="Theme" uid="uid://btp8qjf63v84o" path="res://assets/main_theme.tres" id="1_tomrr"]
+[ext_resource type="Script" path="res://ui_elements/hp_label.gd" id="2_s0ld6"]
+[ext_resource type="Script" path="res://scenes/levels/ShowHandButton.gd" id="3_c8bmu"]
+
+[node name="PlayerUIOverlay" type="CanvasLayer"]
+script = ExtResource("1_i00lv")
+
+[node name="PlayerUIMargin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tomrr")
+theme_override_constants/margin_top = 55
+
+[node name="PlayerUIHeaderLeft" type="HBoxContainer" parent="PlayerUIMargin"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HPlabel" type="Label" parent="PlayerUIMargin/PlayerUIHeaderLeft"]
+layout_mode = 2
+text = "HP: ?? / ??"
+script = ExtResource("2_s0ld6")
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerUIHeaderRight" type="HBoxContainer" parent="PlayerUIMargin"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="DeckUI" type="PanelContainer" parent="PlayerUIMargin"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="DeckPanelMargin" type="MarginContainer" parent="PlayerUIMargin/DeckUI"]
+layout_mode = 2
+
+[node name="DeckPanelCentering" type="CenterContainer" parent="PlayerUIMargin/DeckUI/DeckPanelMargin"]
+layout_mode = 2
+
+[node name="DeckHolder" type="HBoxContainer" parent="PlayerUIMargin/DeckUI/DeckPanelMargin/DeckPanelCentering"]
+layout_mode = 2
+
+[node name="PlayerUIFooterLeft" type="VBoxContainer" parent="PlayerUIMargin"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="PlayerUIFooterRight" type="VBoxContainer" parent="PlayerUIMargin"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="EndTurnButton" type="Button" parent="PlayerUIMargin/PlayerUIFooterRight"]
+layout_mode = 2
+text = "End Turn"
+
+[node name="HandLabel" type="Label" parent="PlayerUIMargin/PlayerUIFooterRight"]
+layout_mode = 2
+text = "Hand: %s"
+
+[node name="DeckLabel" type="Label" parent="PlayerUIMargin/PlayerUIFooterRight"]
+layout_mode = 2
+text = "Deck: %s"
+
+[node name="GraveLabel" type="Label" parent="PlayerUIMargin/PlayerUIFooterRight"]
+layout_mode = 2
+text = "Grave: %s"
+
+[node name="BurnDrawButton" type="Button" parent="PlayerUIMargin/PlayerUIFooterRight"]
+layout_mode = 2
+text = "BurnDraw"
+
+[node name="DiscardDrawButton" type="Button" parent="PlayerUIMargin/PlayerUIFooterRight"]
+layout_mode = 2
+text = "DiscardDraw"
+
+[node name="DiscardButton" type="Button" parent="PlayerUIMargin/PlayerUIFooterRight"]
+layout_mode = 2
+text = "Discard"
+
+[node name="ShowHandButton" type="Button" parent="PlayerUIMargin/PlayerUIFooterRight"]
+layout_mode = 2
+toggle_mode = true
+text = "Show Hand"
+script = ExtResource("3_c8bmu")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="toggled" from="PlayerUIMargin/PlayerUIFooterRight/ShowHandButton" to="." method="_on_show_hand_button_toggled"]
+[connection signal="toggled" from="PlayerUIMargin/PlayerUIFooterRight/ShowHandButton" to="PlayerUIMargin/PlayerUIFooterRight/ShowHandButton" method="_on_toggled"]
