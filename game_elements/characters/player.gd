@@ -23,6 +23,7 @@ var vel: float
 var move: bool = false
 
 var char_speedtemp: int = CHAR_SPEED
+
 var hp_current: int = HP_MAX:
     set = _set_hp_current
 
@@ -43,6 +44,7 @@ func _set_is_active(value: bool) -> void:
     is_active = value
     nav_agent.debug_enabled = is_active
     if is_active:
+        char_speedtemp = CHAR_SPEED
         print("Current player's name: %s" % data.name)
         print("Current player's position: %v" % position)
         start_turn()
@@ -56,6 +58,9 @@ func _ready() -> void:
     burn_draw_button.pressed.connect(func(): data.deck.deal_and_burn_overflow(draw_count))
     discard_draw_button.pressed.connect(func(): data.deck.discard_and_deal(draw_count))
     discard_button.pressed.connect(data.deck.discard_hand)
+
+    hp_changed.connect(ui.hp_label._on_player_hp_changed)
+    hp_current = HP_MAX
 
 func _physics_process(delta: float) -> void:
     if not is_active:
