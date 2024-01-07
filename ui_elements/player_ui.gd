@@ -6,6 +6,7 @@ class_name PlayerUI extends CanvasLayer
 @onready var deck_label: Label = $PlayerUIMargin/PlayerUIFooterRight/DeckLabel
 @onready var grave_label: Label = $PlayerUIMargin/PlayerUIFooterRight/GraveLabel
 @onready var end_turn_button: Button = $PlayerUIMargin/PlayerUIFooterRight/EndTurnButton
+@onready var hp_label : Label = $PlayerUIMargin/PlayerUIFooterLeft/HPlabel
 
 func _ready() -> void:
     deck_ui.visible = false
