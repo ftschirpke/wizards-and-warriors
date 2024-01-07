@@ -9,25 +9,21 @@
 script = ExtResource("1_i00lv")
 
 [node name="PlayerUIMargin" type="MarginContainer" parent="."]
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -341.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+size_flags_vertical = 8
 theme = ExtResource("1_tomrr")
-theme_override_constants/margin_top = 55
 
 [node name="PlayerUIHeaderLeft" type="HBoxContainer" parent="PlayerUIMargin"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-
-[node name="HPlabel" type="Label" parent="PlayerUIMargin/PlayerUIHeaderLeft"]
-layout_mode = 2
-text = "HP: ?? / ??"
-script = ExtResource("2_s0ld6")
-metadata/_edit_use_anchors_ = true
 
 [node name="PlayerUIHeaderRight" type="HBoxContainer" parent="PlayerUIMargin"]
 layout_mode = 2
@@ -53,6 +49,12 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
+
+[node name="HPlabel" type="Label" parent="PlayerUIMargin/PlayerUIFooterLeft"]
+layout_mode = 2
+text = "HP: ?? / ??"
+script = ExtResource("2_s0ld6")
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayerUIFooterRight" type="VBoxContainer" parent="PlayerUIMargin"]
 layout_mode = 2
